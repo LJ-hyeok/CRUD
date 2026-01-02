@@ -8,7 +8,7 @@
   <h1>블로그</h1><hr>
   <h2>목차</h2>
 	<% for (let key in db){ %>
-	<li><%= db[key].title %></li>
+	<li><a href="/detail/<%= db[key].title %>"><%= db[key].title %></a></li>
 	<% } %><hr>
 	<form action="/PostCreator" method="get">
   	<button>새로운 글쓰기</button>
