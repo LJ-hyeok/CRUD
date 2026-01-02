@@ -5,11 +5,13 @@
   <title>CRUD 연습</title>
 </head>
 <body>
-  <h1>블로그</h1>
-
+  <h1>블로그</h1><hr>
   <h2>목차</h2>
-  <form action="/PostCreate" method="get">
-    <button>글쓰기</button>
+	<% for (let key in db){ %>
+	<li><%= db[key].title %></li>
+	<% } %><hr>
+	<form action="/PostCreator" method="get">
+  	<button>새로운 글쓰기</button>
   </form>
 </body>
 </html>
