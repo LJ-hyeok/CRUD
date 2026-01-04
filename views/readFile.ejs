@@ -7,8 +7,9 @@
 <body>
   <h1><%= title %></h1>
   <p><%= text %></p>
-  <form action="" method="post">
-    <button>수정하기</button>
+  <form action="/PostEdit" method="post">
+    <input type="hidden" name="index" value="<%= index %>">
+    <button type="submit">수정하기</button>
   </form>
 </body>
 </html>

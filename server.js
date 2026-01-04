@@ -3,11 +3,12 @@ const path = require('path');
 const app = express();
 // const cors = require("cors");
 
-app.use(express.urlencoded({ extended : true })); //from 해석하기 위해 필요
 // app.use(cors());
+app.use(express.urlencoded({ extended : true })); //from 해석하기 위해 필요
 app.use(express.json());
 app.set('view engine','ejs');
 app.set("views", path.join(__dirname, "views"));
+
 
 let db = [
     {
@@ -39,9 +40,26 @@ app.get("/detail/:id", (req, res) => {
     const title = req.params.id;
     const index = db.findIndex((item) => item.title === title);
     const text = db[index].text;
-    res.render("readFile", {title, text});
+    res.render("readFile", {title, text, index});
+});
+
+app.post("/PostEdit", (req,res) => {
+    const index = Number(req.body.index);
+    const title = db[index].title;
+    const text = db[index].text;
+    res.render("editFile", {index, title, text});
+});
+
+app.post("/Update", (req, res) => {
+    const title = req.body.title;
+    const text = req.body.text;
+    const index = req.body.index;
+    db[index]={title: title, text: text}
+    res.redirect("/");
 });
 
 app.listen(8080, function(){
     console.log("포트 8080에서 서버 대기중");
 });
+
+//중복 제목 방지에 대한 방법이 필요

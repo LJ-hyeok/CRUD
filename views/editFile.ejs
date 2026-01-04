@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CRUD 연습</title>
+</head>
+<body>
+  <h1>글 수정하기</h1>
+  <form action="/Update" method="post">
+    <input type="hidden" name="index" value="<%= index %>">
+    <textarea name="title" rows="2" cols="70" placeholder="제목"><%= title %></textarea><br>
+    <textarea name="text" rows="20" cols="70" placeholder="본문"><%= text %></textarea><br>
+    <button>저장하기</button>
+  </form>
+</body>
+</html>
