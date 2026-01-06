@@ -58,6 +58,12 @@ app.post("/Update", (req, res) => {
     res.redirect("/");
 });
 
+app.post("/PostDelete", (req, res) => {
+    const index = req.body.index;
+    db.splice(index, 1);
+    res.redirect("/");
+});
+
 app.listen(8080, function(){
     console.log("포트 8080에서 서버 대기중");
 });

@@ -9,7 +9,8 @@
   <p><%= text %></p>
   <form action="/PostEdit" method="post">
     <input type="hidden" name="index" value="<%= index %>">
-    <button type="submit">수정하기</button>
+    <button type="submit">수정하기</button> 
+    <button type="submit" formaction="/PostDelete">지우기</button>
   </form>
 </body>
 </html>
