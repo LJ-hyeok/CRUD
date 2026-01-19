@@ -49,7 +49,7 @@ app.post("/newFile", async (req, res) => {
     } catch(error){ console.log(error);res.status(500).send("error");}
 }); 
 
-app.get("/detail/:id", async (req, res) => {
+app.get("/list/:id", async (req, res) => {
     try{
         const index = req.params.id;
         const foundPost = await Post.findById(index);

@@ -8,18 +8,10 @@
   <h1>블로그</h1><hr>
   <h2>목차</h2>
 	<% for (let key in db){ %>
-	<li><a href="/detail/<%= db[key].id %>"><%= db[key].title %></a></li>
+	<li><a href="/list/<%= db[key].id %>"><%= db[key].title %></a></li>
 	<% } %><hr>
 	<form action="/PostCreator" method="post">
   	<button type="submit">새로운 글쓰기</button>
-  </form>
-
-  <hr>
-  <form action="/students" method="post">
-    <input type="hidden" name="id" value="202202976">
-    <input type="hidden" name="name" value="junHyeok">
-    <input type="hidden" name="major" value="computer">
-  	<button type="submit">test</button>
   </form>
 </body>
 </html>
