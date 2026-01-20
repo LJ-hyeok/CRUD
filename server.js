@@ -2,16 +2,16 @@ const express = require('express');
 const mongoose = require('mongoose'); // mongoDB 실습
 const path = require('path');
 const app = express();
+const cors = require("cors");
 require("dotenv").config();
-// const cors = require("cors");
 
-// app.use(cors());
+app.use(cors()); //cors 서로 다른 포트 연결 위함
 app.use(express.urlencoded({ extended : true })); //form 해석하기 위해 필요
 app.use(express.json());
 app.set('view engine','ejs');
 app.set("views", path.join(__dirname, "views"));
 
-//dotenv 필요 
+//dotenv 적용 가능
 mongoose.connect('mongodb://localhost:27017/Blog-data')
 .then( () => console.log("성공"))
 .catch( err => console.error("연결 실패",err));
@@ -25,11 +25,18 @@ const PostSchema = mongoose.Schema({
 
 const Post = mongoose.model('Post', PostSchema);
 
-app.get("/", async(req,res) => {
+app.get("/api/posts", async(req,res) => { //원래는 그냥 /
     try{
         const allPosts = await Post.find();
-        res.render("index", {db : allPosts});
+        // res.render("index", {db : allPosts});
+        res.json(allPosts);
     } catch (error){ console.log(error);res.status(500).send("error");}
+});
+
+// 2. 리액트 완성본(dist 폴더)을 누구나 볼 수 있게 공개합니다.
+app.use(express.static(path.join(__dirname, 'client/dist')));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/dist/index.html'));
 });
 
 app.post("/PostCreator", (req, res) => {
