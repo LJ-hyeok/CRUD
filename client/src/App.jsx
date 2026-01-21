@@ -21,7 +21,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>내 블로그 글 목록</h1>
+      <h1>내 글 목록</h1>
       
       {/* 3. 데이터 개수만큼 반복문 돌리기 (map) */}
       <div className="list-container">
